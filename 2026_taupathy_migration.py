@@ -32,7 +32,8 @@ import matplotlib.pyplot as plt
 s_P = 100.0 # proteina production rate
 s_Mm = 10.0 # microglia-
 s_Mp = 10.0 # microglia+
-alpha = 0.5 # microglia activation
+alpha = 0.5 # microglia conversion from + to -
+beta = 0.5 # microglia activation
 k1 = 0.01        # microglia- coefficient
 k2_piora = 0.03  # microglia+ coefficient
 d1 = 0.1 # microglia- natural decay
@@ -74,10 +75,10 @@ def propagation(t, y, exossomos=1.0):
     )
 
     # Microglia dynamics
-    dMp_EC_dt = s_Mp + 0.05 * P_EC - alpha * Mp_EC - d2 * Mp_EC
+    dMp_EC_dt = s_Mp + beta * P_EC - alpha * Mp_EC - d2 * Mp_EC
     dMm_EC_dt = alpha * Mp_EC - d1 * Mm_EC
 
-    dMp_DG_dt = s_Mp + 0.05 * P_DG - alpha * Mp_DG - d2 * Mp_DG
+    dMp_DG_dt = s_Mp + beta * P_DG - alpha * Mp_DG - d2 * Mp_DG
     dMm_DG_dt = alpha * Mp_DG - d1 * Mm_DG
 
 
